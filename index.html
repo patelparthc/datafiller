@@ -1,0 +1,83 @@
+<!--Site from where we will covert script to bookmark compitible urls inject https://mrcoles.com/bookmarklet/
+
+
+copy code from inside  function myFunction() { untill end of the myfunction and paste in above site }
+    
+
+javascript:(function()%7Blet%20controlType%20%3D%20prompt(%22Enter%20Type%22)%3Blet%20foo%20%3D%20prompt(%22Enter%20Value%20To%20Match%20or%20input%22)%3Blet%20istart%20%3D%20prompt(%22i%20start%20from%22)%3Bif%20(istart%20%3D%3D%20undefined%20%7C%7C%20istart%20%3C%200)%20%7Bistart%20%3D%200%3B%7Dif%20(controlType.toLowerCase()%20%3D%3D%20%22checkbox%22)%20%7Bvar%20btns%20%3D%20document.querySelectorAll(%60input%5Btype%3D%22%24%7BcontrolType%7D%22%5D%60)%3Bfor%20(var%20i%20%3D%200%3B%20i%20%3C%20btns.length%3B%20i%2B%2B)%20%7Bbtns%5Bi%5D.checked%20%3D%20true%3B%7D%7D%20else%20if%20(controlType.toLowerCase()%20%3D%3D%20%22textarea%22)%20%7Bvar%20btns%20%3D%20document.getElementsByTagName(%22textarea%22)%3Bfor%20(var%20i%20%3D%20istart%3B%20i%20%3C%20btns.length%3B%20i%2B%2B)%20%7Bbtns%5Bi%5D.innerHTML%20%3D%20foo%3B%7D%7D%20else%20if%20(controlType.toLowerCase()%20%3D%3D%20%22updateclick%22)%20%7Bconsole.log(%22%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%22)%3Bconsole.log(foo)%3Bconsole.log(%22%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%22)%3Bif%20(foo%20%3D%3D%20undefined%20%7C%7C%20foo.length%20%3C%3D%200)%20%7Bfoo%20%3D%20%22scoresubquestionlist%22%3B%7Dconsole.log(foo)%3Bvar%20btns%20%3D%20document.getElementsByClassName(foo)%3Bconsole.log(btns)%3Bfor%20(var%20i%20%3D%20istart%3B%20i%20%3C%20btns.length%3B%20i%2B%2B)%20%7Bif%20(typeof%20btns%5Bi%5D%3F.onclick%20%3D%3D%20%22function%22)%20%7Bbtns%5Bi%5D.onclick.apply(btns%5Bi%5D)%3B%7D%7D%7D%20else%20%7Bvar%20btns%20%3D%20document.querySelectorAll(%60input%5Btype%3D%22%24%7BcontrolType%7D%22%5D%60)%3Bfor%20(var%20i%20%3D%200%3B%20i%20%3C%20btns.length%3B%20i%2B%2B)%20%7Bif%20(btns%5Bi%5D.value%3F.toLowerCase()%20%3D%3D%20foo%3F.toLowerCase())%20%7Bif%20(typeof%20btns%5Bi%5D.onclick%20%3D%3D%20%22function%22)%20%7Bbtns%5Bi%5D.onclick.apply(btns%5Bi%5D)%3B%7Dbtns%5Bi%5D.checked%20%3D%20true%3B%7D%7D%7D%7D)()
+
+
+-->
+<!DOCTYPE html>
+<html>
+  <body>
+    <script>
+      function doOnClick() {
+        //Should alert('/testlocation');
+        console.log("====================================");
+        console.log("TESING IS CLICKED");
+        console.log("====================================");
+      }
+      function myFunction() {
+        let controlType = prompt("Enter Type");
+        let foo = prompt("Enter Value To Match or input");
+        let istart = prompt("i start from");
+        if (istart == undefined || istart < 0) {
+          istart = 0;
+        }
+        if (controlType.toLowerCase() == "checkbox") {
+          var btns = document.querySelectorAll(`input[type="${controlType}"]`);
+          for (var i = 0; i < btns.length; i++) {
+            btns[i].checked = true;
+          }
+        } else if (controlType.toLowerCase() == "textarea") {
+          var btns = document.getElementsByTagName("textarea");
+          for (var i = istart; i < btns.length; i++) {
+            btns[i].innerHTML = foo;
+          }
+        } else if (controlType.toLowerCase() == "updateclick") {
+          console.log("====================================");
+          console.log(foo);
+          console.log("====================================");
+          if (foo == undefined || foo.length <= 0) {
+            foo = "scoresubquestionlist";
+          }
+          console.log(foo);
+          var btns = document.getElementsByClassName(foo);
+          console.log(btns);
+          for (var i = istart; i < btns.length; i++) {
+            if (typeof btns[i]?.onclick == "function") {
+              btns[i].onclick.apply(btns[i]);
+            }
+          }
+        } else {
+          var btns = document.querySelectorAll(`input[type="${controlType}"]`);
+          for (var i = 0; i < btns.length; i++) {
+            if (btns[i].value?.toLowerCase() == foo?.toLowerCase()) {
+              if (typeof btns[i].onclick == "function") {
+                btns[i].onclick.apply(btns[i]);
+              }
+              btns[i].checked = true;
+            }
+          }
+        }
+      }
+    </script>
+    <p>Choose your favroite season:</p>
+    <table class="scoresubquestionlist" onclick="doOnClick()"></table>
+    <input type="radio" name="JTP" id="summer" value="Yes" />Summer<br />
+    <input type="radio" name="JTP" id="winter" value="YES" />Winter<br />
+    <input
+      type="radio"
+      name="JTP"
+      id="rainy"
+      value="no"
+      onclick="doOnClick()"
+    />Rainy<br />
+    <input type="radio" name="JTP" id="autumn" value="NO" />Autumn<br />
+    <textarea name="test">asd</textarea>
+    <input type="checkbox" name="JTP" id="autumn1" />Autumn<br />
+
+    <button type="button" onclick="myFunction()">Try it</button>
+  </body>
+</html>
